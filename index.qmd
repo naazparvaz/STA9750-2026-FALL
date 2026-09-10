@@ -1,0 +1,40 @@
+---
+title: "NAAZ PARVAZ"
+---
+
+# About me
+
+> Hi there! I’m Naaz, a professional who loves exploring how data, creativity and storytelling come together to drive impactful strategies. I have a background in **marketing** and after 3 years of working on the creative side, I decided that I wanted to transition into a more technical role. As a result, I'm now pursuing a **Masters in AI and Business Analytics* from Zicklin School of Business at Baruch College**.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+if(!require("leaflet")){
+    options(repos=c(CRAN="https://cloud.r-project.org"))
+    install.packages("leaflet")
+    stopifnot(require("leaflet"))
+}
+
+baruch_longitude <- -73.98333
+baruch_latitude  <- +40.74028
+
+leaflet() |>
+  addTiles() |>
+  setView(baruch_longitude, baruch_latitude, zoom=17) |>
+  addPopups(baruch_longitude, baruch_latitude, 
+            "I am a Master's student at <b>Baruch College</b>!")
+```
+
+```{r}
+#| include: false
+1+1
+```
+--------------
+> *Connect with me on [LinkedIn!](https://www.linkedin.com/in/naaz-parvaz/)*
+
+Last Updated: `r format(Sys.time(), "%A %m %d, %Y at %H:%M%p")`
+
+
+
