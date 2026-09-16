@@ -4,7 +4,12 @@ title: "NAAZ PARVAZ"
 
 # About me
 
+![](naaz_headshot.jpeg){width=30%}
+
 > Hi there! I’m Naaz, a professional who loves exploring how data, creativity and storytelling come together to drive impactful strategies. I have a background in **marketing** and after 3 years of working on the creative side, I decided that I wanted to transition into a more technical role. As a result, I'm now pursuing a **Masters in AI and Business Analytics\* from Zicklin School of Business at Baruch College**.
+
+[View my resume](naaz_resume.pdf)
+
 
 ```{r}
 #| echo: false
