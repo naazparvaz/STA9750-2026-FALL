@@ -6,7 +6,6 @@ format:
     theme: cosmo
     toc: false
     page-layout: full
-    css: styles.css
 ---
 
 
