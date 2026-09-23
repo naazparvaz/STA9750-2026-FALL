@@ -1,16 +1,45 @@
 ---
 title: "NAAZ PARVAZ"
+subtitle: "Marketing × Data × AI"
+format:
+  html:
+    theme: cosmo
+    toc: false
+    page-layout: full
+    css: styles.css
 ---
 
-# About me
 
 ![](naaz_headshot.jpeg){width=30%}
 
-> Hi there! I’m Naaz, a professional who loves exploring how data, creativity and storytelling come together to drive impactful strategies. I have a background in **marketing** and after 3 years of working on the creative side, I decided that I wanted to transition into a more technical role. As a result, I'm now pursuing a **Masters in AI and Business Analytics\* from Zicklin School of Business at Baruch College**.
+# *Hi there, I’m Naaz! 👋*
 
-[View my resume](naaz_resume.pdf)
+I'm a marketing professional transitioning into the world of data and AI. My background started in communications and marketing, where I learned to think about people, stories, and business problems. After about three years on the creative side of marketing, I realized that strong marketing strategies need more than good ideas. They need data to understand what works, why it works, and who it works for. 
 
+My goal is to explore how data, creativity and storytelling can come together to drive impactful strategies. Connect with me and follow along as I build projects, explore ideas, and turn data into meaningful insights and strategies!
 
+[LinkedIn](https://www.linkedin.com/in/naaz-parvaz/){.btn .btn-primary}  [Resume](naaz_resume.pdf){.btn .btn-primary}  [GitHub](https://github.com/naazparvaz){.btn .btn-primary}
+
+## CURRENTLY
+
+I'm currently pursuing an **MS in AI & Business Analytics from Zicklin School of Business at Baruch College**, where I'm building my technical skills to unlock the power of data in marketing.
+
+**I'm taking 4 classes this semester!**
+
+1. Principles of Database Management
+2. Basic Software Tools for Data Analysis
+3. Programming for Analytics
+4. Business Communication
+
+**Key technical skills I'm building:**
+
+* R
+* SQL
+* Python
+* Statistics
+* Effective Communication
+
+>Currently in NYC! 
 ```{r}
 #| echo: false
 #| message: false
@@ -39,6 +68,29 @@ leaflet() |>
 
 ------------------------------------------------------------------------
 
-> *Connect with me on [LinkedIn!](https://www.linkedin.com/in/naaz-parvaz/)*
+## BEYOND THE DATA
 
-Last Updated: `r format(Sys.time(), "%A %m %d, %Y at %H:%M%p")`
+### Here's What I've Been Up To...
+
+**🎧 Music: **[Mitraz](https://open.spotify.com/artist/3iGhlvzpXc0UHBQ7klAItX)  
+This two-person band from India is always on loop for me!  
+
+**🎤 Podcast: **[On Purpose with Jay Shetty: Eileen Gu](https://open.spotify.com/episode/0QrCDajVXiP1XDvof7Q1Qg)   
+Absolutely loving this podcast!  
+
+**📚 Read: **[The Devil's Advocate](https://www.goodreads.com/en/book/show/56075874-the-devil-s-advocate)  
+If you're into crime and murder mysteries 10/10 recommend!  
+
+**🍜 Eat: **[Malai](https://www.malai.co/)   
+An Indian icecream place I tried recently!   
+
+**🏙️ Explore:** [Greenwich Village](https://www.google.com/maps/place/Greenwich+Village,+New+York,+NY/@40.7337443,-74.0213017,5793m/data=!3m2!1e3!4b1!4m6!3m5!1s0x89c259940c3213a7:0x8882c42182df455f!8m2!3d40.7335719!4d-74.0027418!16zL20vMDNkbTc?entry=ttu&g_ep=EgoyMDI2MDkyMC4wIKXMDSoASAFQAw%3D%3D)  
+Been exploring this part of Manhattan!  
+
+**🎬 Watch: **[Monster](https://www.netflix.com/title/81409869)  
+Halfway through this show an my mind is blown  
+⚠️ Warning: Steer clear if blood and gore is not your thing  
+
+
+**🧠 Learn: **[How to Solve a Rubik's Cube](https://www.youtube.com/watch?v=7Ron6MN45LY&list=PLI24ciRbl8BUHEeOBaLXY4GpaVXSULYp4)  
+This has been challenging!  
