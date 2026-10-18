@@ -352,7 +352,7 @@ top_shows_by_period |>
     fraction = md("**Fraction of Viewership**")
   ) |>
   tab_header(
-    title = md("**Top Netflix Show by Period**"),
+    title = md("**Table 1: Top Netflix Show by Period**"),
     subtitle = md("*Peak Viewership Analysis*")
   )
 
@@ -392,7 +392,7 @@ catalog_evolution |>
     total_runtime = md("**Total Runtime**")
   ) |>
   tab_header(
-    title = md("**Evolution of Netflix Catalog Size**"),
+    title = md("**Table 2: Evolution of Netflix Catalog Size**"),
     subtitle = md("*Tracking Title Count and Total Runtime Across Reporting Periods*")
   )
 ```
@@ -464,8 +464,8 @@ staples_high_floor |>
     sd_hours = md("**Std. Deviation**")
   ) |>
   tab_header(
-    title = md("**Best Performing Franchises Ranked by Viewership**"),
-    subtitle = md("*Performance Ranked by Highest Average Hours Viewed with a Presence Across 5+ Periods and a Set Minimum Hours of 300 Million and a Maximum Hours of 700 Million*")
+    title = md("**Table 3: Best Performing Franchises by Viewership**"),
+    subtitle = md("*Performance Ranked by Highest Average Hours Viewed with a Presence Across 5+*")
   )
 ```
 The shows have had the most consistently high viewership across all periods based on this approach are **Suits (2011), Grey's Anatomy, Gilmore Girls** and **The Walking Dead**.  
@@ -527,7 +527,7 @@ period_content_split |>
     Movie = md("**Movies (%)**")
   ) |>
   tab_header(
-    title = md("**Viewership Share: TV Shows vs Movies**"),
+    title = md("**Table 4: Viewership Share of TV Shows vs Movies**"),
     subtitle = md("*Viewership Share Based on Runtime Across Reporting Periods*")
   )
 ```
@@ -593,7 +593,7 @@ live_comparison |>
     max_hours    = md("**Maximum (Peak Hit)**")
   ) |>
   tab_header(
-    title    = md("**Live Events vs. Pre-Taped Content Performance**"),
+    title    = md("**Table 5: Live Events vs Pre-Taped Content Performance**"),
     subtitle = md("*Comparing Average and Top-Tier Viewership*")
   ) 
 
@@ -684,8 +684,8 @@ live_efficiency_gt <- live_efficiency_summary |>
     max_hours        = md("**Peak Hit**")
   ) |>
   tab_header(
-    title    = md("**Live Events vs. Pre-Taped Content: Scale & Efficiency**"),
-    subtitle = md("*Evaluating Catalog Footprint, Total Viewership, and Efficiency Distribution*")
+    title    = md("**Table 6: Live Events vs. Pre-Taped Content Efficiency**"),
+    subtitle = md("*Evaluating Catalog Share, Total Viewership, and Efficiency Index*")
   )
 
 # display table
@@ -792,7 +792,7 @@ ggplot(correlation_data_reg_movies, aes(x = total_titles, y = underperform_pct))
     breaks = seq(0, 60, by = 10)
   ) +
   labs(
-    title = "Regional Movies Catalog Size vs Underperformance",
+    title = "Figure 1: Regional Movies Catalog Size vs Underperformance",
     subtitle = "Correlation of Catalog Size and Underperformance Rate for Regional Movies",
     x = "Total Catalog Size (Title Count)",
     y = "Underperformance Rate (< P25)"
@@ -859,7 +859,7 @@ ggplot(regional_paradox_data, aes(x = tier, y = percentage, fill = segment)) +
   ) +
   scale_fill_brewer(type = "qual", palette = 2, name = "Content Type") +
   labs(
-    title = "Content Format Comparison",
+    title = "Figure 2: Content Format Comparison",
     subtitle = "Regional TV vs. Regional Movies",
     x = "Performance Tier",
     y = "Performance (%)"
@@ -953,7 +953,7 @@ ggplot(global_movies_tiers, aes(x = tier, y = percentage, fill = tier)) +
     breaks = seq(0, 60, by = 10)
   ) +
   labs(
-    title = "Viewership Performance Breakdown for Global Movies",
+    title = "Figure 3: Viewership Performance Breakdown for Global Movies",
     subtitle = "Catalog Share: 5.6%  |  Underperformance Rate (< P25): 31.1%",
     x = "Underperformance Rate (%)",
     y = "Catalog Share (%)"
@@ -1017,7 +1017,7 @@ ggplot(tv_shows_performance, aes(x = segment, y = percentage, fill = tier)) +
   coord_flip() +
   scale_fill_brewer(type = "qual", palette = 2, name = "Performance Tier") +
   labs(
-    title = "Performance Distribution of TV Shows",
+    title = "Figure 4: Performance Distribution of TV Shows",
     subtitle = "High Rate of Moderate Performance in Global and Regional TV Shows",
     x = NULL,
     y = "Performance (%)"
@@ -1127,7 +1127,7 @@ broadcast_summary |>
     viewership_share = md("**Viewership Share**")
   ) |>
   tab_header(
-    title    = md("**Platform Composition: Pre-Taped vs. Live Events**"),
+    title    = md("**Table 7: Platform Composition: Pre-Taped vs. Live Events**"),
     subtitle = md("*Comparing Catalog and Viewership*")
   )
 ```
@@ -1215,7 +1215,7 @@ period_title_counts |>
     `Regional Movies` = md("**Regional Movies**")
   ) |>
   tab_header(
-    title = md("**Title Count by Segment Across Reporting Periods**"),
+    title = md("**Table 8: Title Count by Segment Across Reporting Periods**"),
     subtitle = md("*Synchronized Catalog Volume Across Global vs. Regional Quadrants*")
   ) 
 ```
@@ -1383,7 +1383,7 @@ exec_portfolio_matrix <- portfolio_matrix_data |>
     efficiency_index = md("**Efficiency Index**")
   ) |>
   tab_header(
-    title    = md("**Netflix Portfolio Matrix (Pre-Taped Catalog)**"),
+    title    = md("** Table 9: Netflix Portfolio Matrix (Pre-Taped Catalog)**"),
     subtitle = md("*TV Shows and Movies Categorized by Global and Regional Availability*")
   )
 
@@ -1482,7 +1482,7 @@ exec_hit_rate_matrix <- hit_rate_summary |>
     underperform_pct = md("**Underperforming (<P25)**")
   ) |>
   tab_header(
-    title    = md("**Netflix Portfolio Performance (Pre-Taped Catalog)**"),
+    title    = md("**Table 10: Netflix Portfolio Performance (Pre-Taped Catalog)**"),
     subtitle = md("*Share of Titles and Performance Distribution Across Strategic Quadrants*")
   )
 
@@ -1561,8 +1561,8 @@ underperformance_summary |>
     underperforming_titles = md("**Underperforming Titles (< P25)**")
   ) |>
   tab_header(
-    title    = md("**Underperformance by Segment (Pre-Taped Catalog)**"),
-    subtitle = md("*Total Catalog Size vs. Number of Underperforming Titles*")
+    title    = md("**Table 11: Under-performance by Segment (Pre-Taped Catalog)**"),
+    subtitle = md("*Total Catalog Size vs Number of Under-performing Titles*")
   )
 ```
 
@@ -1633,7 +1633,7 @@ create_segment_period_gt <- function(df, target_segment) {
       underperform_pct = md("**Underperforming (<P25)**")
     ) |>
     tab_header(
-      title    = md(paste0("**", target_segment, ": Performance Tier Distribution Across Reporting Periods**")),
+      title    = md(paste0("**Table 12: ", target_segment, "- Performance Tier Distribution Across Reporting Periods**")),
       subtitle = md("*Tracking Hit Density and Long-Tail Under-performance Over Time*")
     ) 
 }
@@ -1802,7 +1802,7 @@ worst_10_per_segment |>
     hours_viewed = md("**Hours Viewed**")
   ) |>
   tab_header(
-    title = md("**Top 10 Lowest Performing Titles (Pre-Taped Catalog)**"),
+    title = md("**Table 13: Top 10 Lowest Performing Titles (Pre-Taped Catalog)**"),
     subtitle = md("*Categorized by Segment*")
   )
 
