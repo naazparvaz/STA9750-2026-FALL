@@ -914,8 +914,8 @@ library(tidyr)
 library(ggplot2)
 library(scales)
 
-# Step 1: Creating dataset focusing on the Regional content comparison
-regional_paradox_data <- tibble(
+# Step 1: Create dataset for Regional TV vs Regional Movies performance breakdown
+regional_format_data <- tibble(
   segment = factor(
     c("Regional TV Shows", "Regional Movies"),
     levels = c("Regional TV Shows", "Regional Movies")
@@ -937,36 +937,38 @@ regional_paradox_data <- tibble(
     )
   )
 
-# Step 2: Rendering grouped bar chart
-ggplot(regional_paradox_data, aes(x = tier, y = percentage, fill = segment)) +
+# Step 2: Rendering grouped bar chart 
+ggplot(regional_format_data, aes(x = tier, y = percentage, fill = segment)) +
   geom_col(position = "dodge", width = 0.6) +
   geom_text(
     aes(label = paste0(round(percentage, 1), "%")),
     position = position_dodge(width = 0.6),
     vjust = -0.5,
     fontface = "bold",
-    size = 3.5
+    size = 3.8
   ) +
   scale_y_continuous(
     labels = function(x) paste0(x, "%"),
-    limits = c(0, 65),
+    limits = c(0, 68),
     breaks = seq(0, 60, by = 15)
   ) +
+  # Apply requested qualitative ColorBrewer palette 2
   scale_fill_brewer(type = "qual", palette = 2, name = "Content Type") +
   labs(
-    title = "Figure 2: Content Format Comparison",
-    subtitle = "Regional TV vs. Regional Movies",
+    title = "Content Format Comparison",
+    subtitle = "Regional TV vs Regional Movies",
     x = "Performance Tier",
     y = "Performance (%)"
   ) +
   theme_bw(base_size = 12) +
   theme(
-    plot.title = element_text(face = "bold", size = 14, hjust = 0.5),
-    plot.subtitle = element_text(face = "bold.italic", size = 10, hjust = 0.5, color = "gray25"),
-    axis.text.x = element_text(face = "bold", size = 9.5),
+    plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
+    plot.subtitle = element_text(face = "italic", size = 11, hjust = 0.5, color = "gray25"),
+    axis.text.x = element_text(face = "bold", size = 10),
     axis.title = element_text(face = "bold"),
     legend.position = "bottom",
     legend.title = element_text(face = "bold"),
+    legend.direction = "horizontal",
     panel.grid.minor = element_blank()
   )
 ```
