@@ -311,26 +311,26 @@ Fraction of Netflix’s globally available catalog by title is **`r sprintf("%.2
 library(dplyr)
 library(gt)
 
-# Step 1: Compute the top show and its share per period
+# Step 1: Computing the top show and its share per period
 top_shows_by_period <- NETFLIX_DATA |>
 
-  # Aggregate hours viewed by period and title (in case titles appear multiple times in a period)
+  # Aggregating hours viewed by period and title, in case titles appear multiple times in a period
   group_by(period, title) |>
   summarise(
     hours_viewed = sum(hours_viewed, na.rm = TRUE), 
     .groups = "drop"
   ) |>
-  # Group by period alone to calculate the period total and fraction
+  # Grouping by period only to calculate the period total and fraction
   group_by(period) |>
   mutate(
     period_total = sum(hours_viewed, na.rm = TRUE),
     fraction = hours_viewed / period_total
   ) |>
-  # Isolate the row with the maximum hours viewed for each period
+  # Isolating the row with the maximum hours viewed for each period
   slice_max(order_by = hours_viewed, n = 1) |>
   ungroup()
 
-# Step 2: Format and display using gt for your memo
+# Step 2: formatting using gt
 top_shows_by_period |>
   select(period, title, hours_viewed, fraction) |>
   gt() |>
@@ -363,7 +363,7 @@ top_shows_by_period |>
 **Question 2: How has Netflix’s catalog changed in size over the periods for which we have questions? You should consider both the number of titles and the total runtime of content.**
 
 ```{r}
-# Step 1: Summarize catalog size by period
+# Step 1: Summarizing catalog size by period
 catalog_evolution <- NETFLIX_DATA |>
   group_by(period, period_start) |>  # including period_start to keep data chronologically sorted
   summarise(
@@ -371,9 +371,9 @@ catalog_evolution <- NETFLIX_DATA |>
     total_runtime = sum(runtime, na.rm = TRUE),
     .groups = "drop"
   ) |>
-  arrange(period_start) # Sort chronologically
+  arrange(period_start) # Sorting chronologically
 
-# Step 2: Format using gt
+# Step 2: creating table using gt
 catalog_evolution |>
   select(period, total_titles, total_runtime) |>
   gt() |>
@@ -408,7 +408,7 @@ library(dplyr)
 library(stringr)
 library(gt)
 
-# Step 1: Clean show titles and aggregate performance across periods
+# Step 1: Cleaning show titles and aggregate performance across periods
 staples_high_floor <- NETFLIX_DATA |>
   mutate(
     show_name = str_replace(
@@ -431,7 +431,7 @@ staples_high_floor <- NETFLIX_DATA |>
     sd_hours = sd(period_hours, na.rm = TRUE),
     .groups = "drop"
   ) |>
-  # Step 2: Filter for presence across 5+ periods with MIN and MAX hours 
+  # Step 2: Filtering for presence across 5+ periods with minimum and maximum hours 
   filter(
     periods_present >= 5,
     max_hours >= 700000000,
@@ -440,7 +440,7 @@ staples_high_floor <- NETFLIX_DATA |>
   arrange(desc(mean_hours)) |>
   slice_head(n = 5)
 
-# Step 3: Format and display using gt
+# Step 3: create table using gt
 staples_high_floor |>
   select(show_name, periods_present, min_hours, mean_hours, max_hours, sd_hours) |>
   gt() |>
@@ -474,25 +474,25 @@ library(stringr)
 library(tidyr)
 library(gt)
 
-# Step 1: Create the content type classification heuristic
+# Step 1: Creating the content type
 classified_netflix <- NETFLIX_DATA |>
   mutate(
-    # Heuristic: Classify as TV Show or Movie based on title text and runtime
+    # Classifying as TV Show or Movie based on title text and runtime
     content_type = case_when(
       str_detect(title, regex("season|limited series|volume|part", ignore_case = TRUE)) ~ "TV Show",
       runtime > 240 ~ "TV Show", # Anything over 4 hours total runtime is a show
-      TRUE ~ "Movie"             # Default everything else to Movie
+      TRUE ~ "Movie"             # Defaulting everything else to Movie
     )
   )
 
-# Step 2: Aggregate hours viewed by period and content type
+# Step 2: Aggregating hours viewed by period and content type
 period_content_split <- classified_netflix |>
   group_by(period, period_start, content_type) |>
   summarise(
     hours_viewed = sum(hours_viewed, na.rm = TRUE),
     .groups = "drop"
   ) |>
-  # Calculate the fraction of total viewership for each content type per period
+  # Calculating the fraction of total viewership for each content type for each period
   group_by(period) |>
   mutate(
     period_total = sum(hours_viewed),
@@ -501,7 +501,7 @@ period_content_split <- classified_netflix |>
   ungroup() |>
   arrange(period_start)
 
-# Step 3: Format and display using gt (Pivot wider for a clean comparison table)
+# Step 3: Formatting using gt and using pivot wider for clean comparison table
 period_content_split |>
   select(period, content_type, fraction) |>
   pivot_wider(
@@ -534,12 +534,12 @@ library(dplyr)
 library(stringr)
 library(gt)
 
-# Step 1: Clean dataset & derive live_event classification
+# Step 1: Cleaning dataset 
 cleaned_netflix_data <- NETFLIX_DATA |>
-  # 1. Remove aggregate placeholders to ensure accurate metrics
+  # 1. Detecting and removing aggregate placeholders to get accurate metrics
   filter(!str_detect(title, regex("other shows|aggregate|summary|total", ignore_case = TRUE))) |>
   mutate(
-    # 2. Derive live_event boolean using standard pipeline regex
+    # 2. Deriving live_event boolean using standard pipeline regex
     live_event = str_detect(
       title, 
       regex("live at|live from|live stream|comedy special|stand-up|special event|vs\\.", ignore_case = TRUE)
@@ -549,15 +549,15 @@ cleaned_netflix_data <- NETFLIX_DATA |>
     )
   )
 
-# Step 2: Summarize viewership metrics comparing live events vs. pre-taped content
+# Step 2: Summarizing viewership metrics comparing live events vs. pre-taped content
 live_comparison <- cleaned_netflix_data |>
   group_by(live_event) |>
   summarise(
     total_titles = n(),
     mean_hours   = mean(hours_viewed, na.rm = TRUE),
     median_hours = median(hours_viewed, na.rm = TRUE),
-    p90_hours    = quantile(hours_viewed, 0.90, na.rm = TRUE), # Top tier (90th percentile)
-    max_hours    = max(hours_viewed, na.rm = TRUE),           # Absolute peak / breakout hit
+    p90_hours    = quantile(hours_viewed, 0.90, na.rm = TRUE), # this is top tier
+    max_hours    = max(hours_viewed, na.rm = TRUE),           # hit
     .groups      = "drop"
   ) |>
   mutate(
@@ -565,7 +565,7 @@ live_comparison <- cleaned_netflix_data |>
   ) |>
   arrange(desc(total_titles))
 
-# Step 3: Format and display using gt
+# Step 3: create table using gt
 live_comparison |>
   select(content_type, total_titles, mean_hours, median_hours, p90_hours, max_hours) |>
   gt() |>
@@ -600,12 +600,12 @@ library(dplyr)
 library(stringr)
 library(gt)
 
-# Step 1: Clean dataset & derive live_event classification
+# Step 1: Cleaning dataset and classifying under live_event
 cleaned_netflix_data <- NETFLIX_DATA |>
-  # 1. Filter out aggregate/summary placeholders
+  # 1. Filtering aggregate/summary placeholders
   filter(!str_detect(title, regex("other shows|aggregate|summary|total", ignore_case = TRUE))) |>
   mutate(
-    # 2. Classify Live/Events vs Pre-Taped using consistent regex logic
+    # 2. Classifying live events vs pre-taped using regex logic
     live_event = str_detect(
       title, 
       regex("live at|live from|live stream|comedy special|stand-up|special event|vs\\.", ignore_case = TRUE)
@@ -615,11 +615,11 @@ cleaned_netflix_data <- NETFLIX_DATA |>
     )
   )
 
-# Step 2: Establish cleaned platform baselines
+# Step 2: creating platform baselines
 total_platform_titles <- nrow(cleaned_netflix_data)
 total_platform_hours  <- sum(cleaned_netflix_data$hours_viewed, na.rm = TRUE)
 
-# Step 3: Summarize metrics by content type
+# Step 3: Summarizin metrics by content type
 live_efficiency_summary <- cleaned_netflix_data |>
   group_by(live_event) |>
   summarise(
@@ -628,11 +628,10 @@ live_efficiency_summary <- cleaned_netflix_data |>
     total_hours      = sum(hours_viewed, na.rm = TRUE),
     viewership_share = sum(hours_viewed, na.rm = TRUE) / total_platform_hours,
     
-    # Efficiency & Yield Metrics
     yield_per_title  = mean(hours_viewed, na.rm = TRUE) / 1e6, 
     efficiency_index = (sum(hours_viewed, na.rm = TRUE) / total_platform_hours) / (n() / total_platform_titles),
     
-    # Distribution Benchmarks
+    # creating distribution benchmarks
     median_hours     = median(hours_viewed, na.rm = TRUE),
     p90_hours        = quantile(hours_viewed, 0.90, na.rm = TRUE),
     max_hours        = max(hours_viewed, na.rm = TRUE),
@@ -643,7 +642,7 @@ live_efficiency_summary <- cleaned_netflix_data |>
   ) |>
   arrange(desc(catalog_share))
 
-# Step 4: Render publication-quality gt table
+# Step 4: rendering gt table
 live_efficiency_gt <- live_efficiency_summary |>
   select(
     content_type, total_titles, catalog_share, total_hours, viewership_share, 
@@ -679,7 +678,7 @@ live_efficiency_gt <- live_efficiency_summary |>
     subtitle = md("*Evaluating Catalog Footprint, Total Viewership, and Efficiency Distribution*")
   )
 
-# Display Table
+# display table
 live_efficiency_gt
 ```
 
@@ -692,10 +691,10 @@ Live events accounted for just *0.3%* of the catalog (190 titles) but generated 
 
 ## Strategy Memo
 
-To: Netflix Leadership
-From: Naaz Parvaz
-Date: 16th October,2026
-Subject: Corporate Strategy Memo
+**To**: Netflix Leadership  
+**From**: Naaz Parvaz  
+**Date**: 16th October, 2026  
+**Subject**: Corporate Strategy Memo
 
 
 ## Purpose
@@ -722,7 +721,7 @@ library(stringr)
 library(ggplot2)
 library(scales)
 
-# Step 1: Clean data
+# Step 1: Cleaning data
 cleaned_netflix_data <- NETFLIX_DATA |>
   filter(!str_detect(title, regex("other shows|aggregate|summary|total", ignore_case = TRUE))) |>
   filter(
@@ -746,10 +745,10 @@ cleaned_netflix_data <- NETFLIX_DATA |>
     segment = paste(availability_type, content_type)
   )
 
-# Step 2: Establish underperformance benchmark
+# Step 2: Establishing underperformance benchmark
 p25_clean <- quantile(cleaned_netflix_data$hours_viewed, 0.25, na.rm = TRUE)
 
-# Step 3: Aggregate period metrics and filter for Regional Movies
+# Step 3: Aggregating period metrics and filtering for Regional Movies
 correlation_data_reg_movies <- cleaned_netflix_data |>
   mutate(period = if_else(is.na(period), "Unspecified", as.character(period))) |>
   group_by(period, segment) |>
@@ -763,7 +762,7 @@ correlation_data_reg_movies <- cleaned_netflix_data |>
 r_val_rm   <- cor(correlation_data_reg_movies$total_titles, correlation_data_reg_movies$underperform_pct, use = "complete.obs")
 r2_text_rm <- paste0("R² = ", round(r_val_rm^2, 2))
 
-# Step 4: Render GGPlot 
+# Step 4: creating ggplot 
 ggplot(correlation_data_reg_movies, aes(x = total_titles, y = underperform_pct)) +
   geom_point(size = 3.5, alpha = 0.85, color = "#e7298a") +
   geom_smooth(method = "lm", se = FALSE, color = "black", linewidth = 0.8) +
@@ -810,7 +809,7 @@ library(tidyr)
 library(ggplot2)
 library(scales)
 
-# Step 1: Create dataset focusing on the Regional content comparison
+# Step 1: Creating dataset focusing on the Regional content comparison
 regional_paradox_data <- tibble(
   segment = factor(
     c("Regional TV Shows", "Regional Movies"),
@@ -833,7 +832,7 @@ regional_paradox_data <- tibble(
     )
   )
 
-# Step 2: Render Grouped Bar Chart
+# Step 2: Rendering grouped bar chart
 ggplot(regional_paradox_data, aes(x = tier, y = percentage, fill = segment)) +
   geom_col(position = "dodge", width = 0.6) +
   geom_text(
@@ -878,7 +877,7 @@ library(stringr)
 library(ggplot2)
 library(scales)
 
-# Step 1: Clean data and classify into 4 strategic quadrants
+# Step 1: Cleaning data
 cleaned_netflix_data <- NETFLIX_DATA |>
   filter(!str_detect(title, regex("other shows|aggregate|summary|total", ignore_case = TRUE))) |>
   filter(
@@ -902,12 +901,12 @@ cleaned_netflix_data <- NETFLIX_DATA |>
     segment = paste(availability_type, content_type)
   )
 
-# Step 2: Establish platform-wide percentile benchmarks
+# Step 2: establishing platform-wide percentile benchmarks
 p90_clean <- quantile(cleaned_netflix_data$hours_viewed, 0.90, na.rm = TRUE)
 p75_clean <- quantile(cleaned_netflix_data$hours_viewed, 0.75, na.rm = TRUE)
 p25_clean <- quantile(cleaned_netflix_data$hours_viewed, 0.25, na.rm = TRUE)
 
-# Step 3: Summarize performance tier percentages strictly for Global Movies
+# Step 3: summarizing performance tier percentages
 global_movies_tiers <- cleaned_netflix_data |>
   filter(segment == "Global Movies") |>
   summarise(
@@ -928,7 +927,7 @@ global_movies_tiers <- cleaned_netflix_data |>
     )
   )
 
-# Step 4: Render chart
+# Step 4: Rendering chart
 ggplot(global_movies_tiers, aes(x = tier, y = percentage, fill = tier)) +
   geom_col(width = 0.65, show.legend = FALSE) +
   geom_text(
@@ -972,7 +971,7 @@ library(tidyr)
 library(ggplot2)
 library(scales)
 
-# Step 1: Create dataset for Global TV Shows and Regional TV Shows performance breakdown
+# Step 1: Creating dataset for Global TV Shows and Regional TV Shows performance breakdown
 tv_shows_performance <- tibble(
   segment = factor(
     c("Global TV Shows", "Regional TV Shows"),
@@ -995,7 +994,7 @@ tv_shows_performance <- tibble(
     )
   )
 
-# Step 2: Render Chart 
+# Step 2: Rendeing chart 
 ggplot(tv_shows_performance, aes(x = segment, y = percentage, fill = tier)) +
   geom_col(width = 0.5, position = "fill", show.legend = TRUE) +
   geom_text(
@@ -1058,11 +1057,11 @@ library(dplyr)
 library(stringr)
 library(gt)
 
-# Step 1: Clean dataset & define broadcast type
+# Step 1: Cleaning dataset & defining broadcast type
 cleaned_netflix_data <- NETFLIX_DATA |>
   filter(!str_detect(title, regex("other shows|aggregate|summary|total", ignore_case = TRUE))) |>
   mutate(
-    # Classify content into Live/Specials vs. Pre-Taped catalog
+    # Classifying content into Live events vs. Pre-Taped catalog
     broadcast_type = if_else(
       str_detect(
         title, 
@@ -1078,10 +1077,10 @@ cleaned_netflix_data <- NETFLIX_DATA |>
     )
   )
 
-# Step 2: Establish total platform catalog count
+# Step 2: Establishing total platform catalog count
 clean_total_titles <- nrow(cleaned_netflix_data)
 
-# Step 3: Summarise metrics by broadcast type
+# Step 3: Summarising metrics by broadcast type
 broadcast_summary <- cleaned_netflix_data |>
   group_by(broadcast_type) |>
   summarise(
@@ -1093,7 +1092,7 @@ broadcast_summary <- cleaned_netflix_data |>
   ) |>
   arrange(desc(catalog_share))
 
-# Step 4: Render publication-ready GT Table
+# Step 4: Rendering gt table
 broadcast_summary |>
   gt() |>
   fmt_number(
@@ -1137,11 +1136,11 @@ library(stringr)
 library(tidyr)
 library(gt)
 
-# Step 1: Clean data 
+# Step 1: Cleaning data 
 classified_netflix <- NETFLIX_DATA |>
   # 1. Filter out aggregate placeholders
   filter(!str_detect(title, regex("other shows|aggregate|summary|total", ignore_case = TRUE))) |>
-  # 2. Filter out Live / Event Specials
+  # 2. Filtering out Live Events
   filter(
     !(
       str_detect(title, regex("live at|live from|live stream|comedy special|stand-up|special event|vs\\.", ignore_case = TRUE)) & 
@@ -1149,7 +1148,7 @@ classified_netflix <- NETFLIX_DATA |>
     )
   ) |>
   mutate(
-    # 3. Format classification
+    # 3. creating format classification
     content_type = if_else(
       str_detect(
         title, 
@@ -1157,7 +1156,7 @@ classified_netflix <- NETFLIX_DATA |>
       ),
       "TV Shows", "Movies"
     ),
-    # 4. Availability classification 
+    # 4. creating availability classification 
     availability_type = if_else(
       available_globally %in% c(TRUE, "Yes", "TRUE", 1),
       "Global", "Regional"
@@ -1166,7 +1165,7 @@ classified_netflix <- NETFLIX_DATA |>
     segment = paste(availability_type, content_type)
   )
 
-# Step 2: Aggregate Title Counts by Period and Strategic Segment
+# Step 2: Aggregating title counts by period and segment
 period_title_counts <- classified_netflix |>
   # Replace NA periods with "Unspecified" if any exist so no rows are dropped
   mutate(period = if_else(is.na(period), "Unspecified", as.character(period))) |>
@@ -1176,7 +1175,7 @@ period_title_counts <- classified_netflix |>
     .groups = "drop"
   )
 
-# Step 3: Pivot Wider & Format with GT Table
+# Step 3: using pivot wider and creating gt table
 period_title_counts |>
   select(period, segment, title_count) |>
   pivot_wider(
@@ -1222,11 +1221,11 @@ library(stringr)
 library(ggplot2)
 library(scales)
 
-# Step 1: Clean data and classify into 4 strategic quadrants
+# Step 1: Cleaning data
 classified_netflix <- NETFLIX_DATA |>
-  # 1. Filter out aggregate placeholders
+  # 1. Filtering aggregate placeholders
   filter(!str_detect(title, regex("other shows|aggregate|summary|total", ignore_case = TRUE))) |>
-  # 2. Filter out Live / Event Specials
+  # 2. Filtering live events
   filter(
     !(
       str_detect(title, regex("live at|live from|live stream|comedy special|stand-up|special event|vs\\.", ignore_case = TRUE)) & 
