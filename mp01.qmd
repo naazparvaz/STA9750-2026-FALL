@@ -648,7 +648,7 @@ live_efficiency_summary <- cleaned_netflix_data |>
     .groups = "drop"
   ) |>
   mutate(
-    content_type = if_else(live_event, "Live / Event Specials", "Pre-Taped Catalog")
+    content_type = if_else(live_event, "Live Events", "Pre-Taped Catalog")
   ) |>
   arrange(desc(catalog_share))
 
@@ -718,7 +718,102 @@ Pre-taped content represents *99.7%* of Netflix’s catalog, making its performa
 ## Key Findings
 
 **1. Movies account for most under-performing titles:**  
-Although movies represent *29.2%* of the catalog, they account for nearly *84%* of **under-performing** titles. This imbalance suggests that movie acquisition and retention practices need to be investigated more closely.
+Although movies (combined Global and Regional) represent *29.2%* of the catalog, they account for nearly *84%* of **under-performing** titles. This imbalance suggests that movie acquisition and retention practices need to be investigated more closely.
+
+```{r}
+#| message: false
+#| code-fold: true
+
+library(dplyr)
+library(stringr)
+library(gt)
+
+# Step 1: Clean dataset, filter out live specials, & define segments
+cleaned_netflix_data <- NETFLIX_DATA |>
+  # 1. Remove aggregate placeholders
+  filter(!str_detect(title, regex("other shows|aggregate|summary|total", ignore_case = TRUE))) |>
+  # 2. Filter out Live / Event Specials to sync with Pre-Taped Catalog
+  filter(
+    !(
+      str_detect(title, regex("live at|live from|live stream|comedy special|stand-up|special event|vs\\.", ignore_case = TRUE)) & 
+      !str_detect(title, regex("you vs\\.|lopez vs\\.|snack vs\\.|ash vs\\.|godzilla vs\\.|scott pilgrim vs\\.|vampires vs\\.", ignore_case = TRUE))
+    )
+  ) |>
+  mutate(
+    content_type = if_else(
+      str_detect(
+        title, 
+        regex(
+          "season|volume|part|series|limited series|episode|s[0-9]|year|chiquititas|mr\\. queen|law & order", 
+          ignore_case = TRUE
+        )
+      ),
+      "TV Shows", "Movies"
+    ),
+    availability_type = if_else(
+      available_globally %in% c(TRUE, "Yes", "TRUE", 1),
+      "Global", "Regional"
+    ),
+    segment = paste(availability_type, content_type)
+  )
+
+# Step 2: Establish total platform catalog count and percentile thresholds
+clean_total_titles <- nrow(cleaned_netflix_data)
+
+p90_clean <- quantile(cleaned_netflix_data$hours_viewed, 0.90, na.rm = TRUE)
+p75_clean <- quantile(cleaned_netflix_data$hours_viewed, 0.75, na.rm = TRUE)
+p25_clean <- quantile(cleaned_netflix_data$hours_viewed, 0.25, na.rm = TRUE)
+
+# Step 3: Summarise performance per segment with BOTH Total Titles and Catalog Share
+hit_rate_summary <- cleaned_netflix_data |>
+  group_by(segment) |>
+  summarise(
+    total_titles     = n(),
+    catalog_share    = n() / clean_total_titles,
+    top_tier_pct     = mean(hours_viewed >= p90_clean, na.rm = TRUE),
+    strong_pct       = mean(hours_viewed >= p75_clean & hours_viewed < p90_clean, na.rm = TRUE),
+    moderate_pct     = mean(hours_viewed >= p25_clean & hours_viewed < p75_clean, na.rm = TRUE),
+    underperform_pct = mean(hours_viewed < p25_clean, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  # Standardize row order
+  mutate(
+    segment = factor(
+      segment, 
+      levels = c("Global TV Shows", "Regional TV Shows", "Global Movies", "Regional Movies")
+    )
+  ) |>
+  arrange(segment)
+
+# Step 4: Render GT Table
+exec_hit_rate_matrix <- hit_rate_summary |>
+  gt() |>
+  fmt_number(
+    columns = c(total_titles), 
+    use_seps = TRUE, 
+    decimals = 0
+  ) |>
+  fmt_percent(
+    columns = c(catalog_share, top_tier_pct, strong_pct, moderate_pct, underperform_pct), 
+    decimals = 1
+  ) |>
+  cols_label(
+    segment          = md("**Segment**"),
+    total_titles     = md("**Total Titles**"),
+    catalog_share    = md("**Catalog Share**"),
+    top_tier_pct     = md("**Top Hits (>=P90)**"),
+    strong_pct       = md("**Strong (P75–P90)**"),
+    moderate_pct     = md("**Moderate (P25–P75)**"),
+    underperform_pct = md("**Underperforming (<P25)**")
+  ) |>
+  tab_header(
+    title    = md("**Table 7: Netflix Portfolio Performance (Pre-Taped Catalog)**"),
+    subtitle = md("*Share of Titles and Performance Distribution Across Strategic Quadrants*")
+  )
+
+# Display Table
+exec_hit_rate_matrix
+```
 
 **2. Regional Movies present the greatest efficiency concern:**  
 Regional Movies account for *23.6%* of the catalog, yet *53.2%* of titles in this category are observed to be **under-performing**. Historical data also show that under-performance declined when the category’s title count dropped sharply from *9,599 to 460* in the second half of 2023 (2023H2), then increased as titles were added to the catalog again in the first half of 2024 (2024H1). This pattern suggests that expanding the regional movie catalog without selective acquisition criteria may increase the volume of low-engagement and under-performing content. The chart below represents the positive correlation between catalog size and under-performance.
@@ -911,12 +1006,12 @@ cleaned_netflix_data <- NETFLIX_DATA |>
     segment = paste(availability_type, content_type)
   )
 
-# Step 2: establishing platform-wide percentile benchmarks
+# Step 2: Establishing platform-wide percentile benchmarks
 p90_clean <- quantile(cleaned_netflix_data$hours_viewed, 0.90, na.rm = TRUE)
 p75_clean <- quantile(cleaned_netflix_data$hours_viewed, 0.75, na.rm = TRUE)
 p25_clean <- quantile(cleaned_netflix_data$hours_viewed, 0.25, na.rm = TRUE)
 
-# Step 3: summarizing performance tier percentages
+# Step 3: Summarizing performance tier percentages (Harmonized en-dashes)
 global_movies_tiers <- cleaned_netflix_data |>
   filter(segment == "Global Movies") |>
   summarise(
@@ -933,7 +1028,7 @@ global_movies_tiers <- cleaned_netflix_data |>
   mutate(
     tier = factor(
       tier,
-      levels = c("Top Hits (>=P90)", "Strong (P75-P90)", "Moderate (P25-P75)", "Underperforming (<P25)")
+      levels = c("Top Hits (>=P90)", "Strong (P75–P90)", "Moderate (P25–P75)", "Underperforming (<P25)")
     )
   )
 
@@ -953,10 +1048,10 @@ ggplot(global_movies_tiers, aes(x = tier, y = percentage, fill = tier)) +
     breaks = seq(0, 60, by = 10)
   ) +
   labs(
-    title = "Figure 3: Viewership Performance Breakdown for Global Movies",
+    title = "Viewership Performance Breakdown for Global Movies",
     subtitle = "Catalog Share: 5.6%  |  Underperformance Rate (< P25): 31.1%",
-    x = "Underperformance Rate (%)",
-    y = "Catalog Share (%)"
+    x = "Performance Tier Benchmark",
+    y = "Percentage of Segment Catalog"
   ) +
   theme_bw(base_size = 12) +
   theme(
@@ -1127,7 +1222,7 @@ broadcast_summary |>
     viewership_share = md("**Viewership Share**")
   ) |>
   tab_header(
-    title    = md("**Table 7: Platform Composition: Pre-Taped vs. Live Events**"),
+    title    = md("**Table 8: Platform Composition: Pre-Taped vs. Live Events**"),
     subtitle = md("*Comparing Catalog and Viewership*")
   )
 ```
@@ -1215,7 +1310,7 @@ period_title_counts |>
     `Regional Movies` = md("**Regional Movies**")
   ) |>
   tab_header(
-    title = md("**Table 8: Title Count by Segment Across Reporting Periods**"),
+    title = md("**Table 9: Title Count by Segment Across Reporting Periods**"),
     subtitle = md("*Synchronized Catalog Volume Across Global vs. Regional Quadrants*")
   ) 
 ```
@@ -1383,7 +1478,7 @@ exec_portfolio_matrix <- portfolio_matrix_data |>
     efficiency_index = md("**Efficiency Index**")
   ) |>
   tab_header(
-    title    = md("** Table 9: Netflix Portfolio Matrix (Pre-Taped Catalog)**"),
+    title    = md("**Table 10: Netflix Portfolio Matrix (Pre-Taped Catalog)**"),
     subtitle = md("*TV Shows and Movies Categorized by Global and Regional Availability*")
   )
 
@@ -1482,7 +1577,7 @@ exec_hit_rate_matrix <- hit_rate_summary |>
     underperform_pct = md("**Underperforming (<P25)**")
   ) |>
   tab_header(
-    title    = md("**Table 10: Netflix Portfolio Performance (Pre-Taped Catalog)**"),
+    title    = md("**Table 7(used above in memo): Netflix Portfolio Performance (Pre-Taped Catalog)**"),
     subtitle = md("*Share of Titles and Performance Distribution Across Strategic Quadrants*")
   )
 
