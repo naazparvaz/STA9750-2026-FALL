@@ -527,8 +527,8 @@ period_content_split |>
     Movie = md("**Movies (%)**")
   ) |>
   tab_header(
-    title = md("**Viewership Share: TV Shows vs. Movies**"),
-    subtitle = md("*Estimated via Heuristic (Title Keywords & Runtime Thresholds)*")
+    title = md("**Viewership Share: TV Shows vs Movies**"),
+    subtitle = md("*Viewership Share Based on Runtime Across Reporting Periods*")
   )
 ```
 Within each period, the fraction of time spent on shows is significantly higher than movies. The time spent on movies in the first half of 2023, although, still lower than shows was relatively higher than the time spent on movies in rest of the time periods. However, this number noticeably dropped for the rest of the time periods. This indicates that shows dominated viewership by a huge margin throughout all given time periods.  
