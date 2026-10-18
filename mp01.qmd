@@ -955,7 +955,7 @@ ggplot(regional_format_data, aes(x = tier, y = percentage, fill = segment)) +
   # Apply requested qualitative ColorBrewer palette 2
   scale_fill_brewer(type = "qual", palette = 2, name = "Content Type") +
   labs(
-    title = "Content Format Comparison",
+    title = "Figure 2: Content Format Comparison",
     subtitle = "Regional TV vs Regional Movies",
     x = "Performance Tier",
     y = "Performance (%)"
@@ -1050,7 +1050,7 @@ ggplot(global_movies_tiers, aes(x = tier, y = percentage, fill = tier)) +
     breaks = seq(0, 60, by = 10)
   ) +
   labs(
-    title = "Viewership Performance Breakdown for Global Movies",
+    title = "Figure 3: Viewership Performance Breakdown for Global Movies",
     subtitle = "Catalog Share: 5.6%  |  Underperformance Rate (< P25): 31.1%",
     x = "Performance Tier Benchmark",
     y = "Percentage of Segment Catalog"
@@ -1387,7 +1387,7 @@ ggplot(period_title_counts, aes(x = period, y = title_count, fill = segment)) +
   scale_y_continuous(labels = comma, expand = expansion(mult = c(0, 0.18))) +
   scale_fill_brewer(type = "qual", palette = 2) +
   labs(
-    title = "Title Count by Segment Across Reporting Periods",
+    title = "Figure 5: Title Count by Segment Across Reporting Periods",
     subtitle = "Synchronized Catalog Volume Across Global vs. Regional Quadrants",
     x = "Reporting Period",
     y = "Title Count"
@@ -1814,7 +1814,7 @@ ggplot(correlation_data, aes(x = total_titles, y = underperform_pct, color = seg
   scale_y_continuous(labels = function(x) paste0(x, "%")) +
   scale_color_brewer(type = "qual", palette = 2, name = "Segment") +
   labs(
-    title = "Correlation of Catalog Size and Underperformance Rate",
+    title = "Figure 6: Correlation of Catalog Size and Underperformance Rate",
     subtitle = "Evaluating Long-Tail Inefficiency Across Segments",
     x = "Total Catalog Size (Title Count)",
     y = "Underperformance Rate (< P25)"
