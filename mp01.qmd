@@ -304,7 +304,9 @@ Fraction of Netflix’s globally available catalog by title is **`r sprintf("%.2
 
 ## Task 6: Exploratory Questions - Table Answers
 
-**Question 1: What was the top show (by total hours viewed) in each period and what fraction of total viewership did it capture?**
+**Question 1: What was the top show (by total hours viewed) in each period and what fraction of total viewership did it capture?**  
+
+**Approach**: To analyze the top shows across each period by *"total hours viewed"*, first, I calculated total viewing hours by title and period. Then, I divided each top show's volume by total platform viewership, and used slice_max() to extract only the top show in each period. 
 
 ```{r}
 
@@ -360,7 +362,9 @@ top_shows_by_period |>
 
 
 
-**Question 2: How has Netflix’s catalog changed in size over the periods for which we have questions? You should consider both the number of titles and the total runtime of content.**
+**Question 2: How has Netflix’s catalog changed in size over the periods for which we have questions? You should consider both the number of titles and the total runtime of content.**  
+
+**Approach**: To answer this question, I grouped the data by reporting period and ordered it chronologically using period_start so I could accurately track change in both number of distinct catalogs and total runtime over time. Counting distinct titles prevents duplicate entries from skewing the numbers and adding total runtime reveals the growth in volume growth. 
 
 ```{r}
 # Step 1: Summarizing catalog size by period
@@ -399,9 +403,11 @@ Netflix had the highest number of titles but the lowest total runtime in the fir
 
 **Question 3: Which shows have had the most consistently high viewership across all periods?**
 
-This Question, made me approach the answer in several ways but I ultimately chose this version because I felt it gave me the most accurate answer.
+**Approach**: This Question, made me approach the answer in several ways but I ultimately chose this version because I felt it gave me the most accurate answer. 
 
-> Ranking Performance by Highest Average Hours Viewed with a Presence Across 5+ Periods and Setting Minimum Hours Viewed to 300,000,000 Hours and Maximum Hours Viewed to 700,000,000 Hours. 
+To identify consistently high-performing shows across all periods, I grouped titles by franchise, combining individual seasons and volumes into a single universe. I then calculated each franchise’s number of periods present in, mean, minimum, maximum, and standard deviation of hours viewed across periods.
+
+To focus on franchises with consistently high viewership, I ranked them by highest average hours viewed, while filtering presence in at least five periods and setting minimum hours viewed to of 300 million and maximum hours viewed to 700 million hours. These criteria helped me to reduce the influence of one-time hits and identify franchises that maintained high viewership over time and are true "staples". 
 
 ```{r}
 library(dplyr)
@@ -466,7 +472,9 @@ The shows have had the most consistently high viewership across all periods base
 
 
 
-**Question 4: Within each period, what fraction of time was spent on ‘shows’ vs movies?**
+**Question 4: Within each period, what fraction of time was spent on ‘shows’ vs movies?**  
+
+**Approach**: To answer this question, I classified content as either TV Shows or Movies using a combination of title keywords (like season, limited series, volume, part) and a runtime threshold of more than 240 minutes (4 hours). Then, I calculated the total viewing hours for each content type across reporting periods and converted them into percentage shares. This helped me to distinguish between longer films and TV series, making it easier to compare their share of total viewership over time. 
 
 ``` {r}
 library(dplyr)
@@ -528,6 +536,8 @@ Within each period, the fraction of time spent on shows is significantly higher 
 
 
 **Question 5: How does the performance of live events compare to pre-taped content? Does the average live event draw more viewership than an average piece of pre-taped content? How about a ‘top tier’ live event vs ‘top tier’ pre-taped content?**
+
+**Approach**: For this question, I divided the catalog into live events and pre-taped content and calculated summary statistics for each category, including title counts, means, medians, 90th percentiles, and maximum viewing hours. Comparing both viewership and top-performing titles helped me understand how the two categories performed withough being skewed by outliers. 
 
 ```{r}
 library(dplyr)
@@ -828,7 +838,7 @@ regional_paradox_data <- tibble(
   mutate(
     tier = factor(
       tier,
-      levels = c("Top Hits (>=P90)", "Strong (P75–P90)", "Moderate (P25–P75)", "Underperforming (<P25)")
+      levels = c("Top Hits (>=P90)", "Strong (P75-P90)", "Moderate (P25-P75)", "Underperforming (<P25)")
     )
   )
 
@@ -923,7 +933,7 @@ global_movies_tiers <- cleaned_netflix_data |>
   mutate(
     tier = factor(
       tier,
-      levels = c("Top Hits (>=P90)", "Strong (P75–P90)", "Moderate (P25–P75)", "Underperforming (<P25)")
+      levels = c("Top Hits (>=P90)", "Strong (P75-P90)", "Moderate (P25-P75)", "Underperforming (<P25)")
     )
   )
 
