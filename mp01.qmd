@@ -718,21 +718,18 @@ Pre-taped content represents *99.7%* of Netflix’s catalog, making its performa
 ## Key Findings
 
 **1. Movies account for most under-performing titles:**  
-Although movies (combined Global and Regional) represent *29.2%* of the catalog, they account for nearly *84%* of **under-performing** titles. This imbalance suggests that movie acquisition and retention practices need to be investigated more closely.
+Although movies (combined Global and Regional) represent *29.2%* of the catalog, they account for nearly *84%* of **under-performing** titles (Please see Table I below). This imbalance suggests that movie acquisition and retention practices need to be investigated more closely.
 
 ```{r}
 #| message: false
 #| code-fold: true
-
 library(dplyr)
 library(stringr)
 library(gt)
 
-# Step 1: Clean dataset, filter out live specials, & define segments
+# Step 1: Cleaning dataset and classifying into 4 segements
 cleaned_netflix_data <- NETFLIX_DATA |>
-  # 1. Remove aggregate placeholders
   filter(!str_detect(title, regex("other shows|aggregate|summary|total", ignore_case = TRUE))) |>
-  # 2. Filter out Live / Event Specials to sync with Pre-Taped Catalog
   filter(
     !(
       str_detect(title, regex("live at|live from|live stream|comedy special|stand-up|special event|vs\\.", ignore_case = TRUE)) & 
@@ -743,10 +740,7 @@ cleaned_netflix_data <- NETFLIX_DATA |>
     content_type = if_else(
       str_detect(
         title, 
-        regex(
-          "season|volume|part|series|limited series|episode|s[0-9]|year|chiquititas|mr\\. queen|law & order", 
-          ignore_case = TRUE
-        )
+        regex("season|volume|part|series|limited series|episode|s[0-9]|year|chiquititas|mr\\. queen|law & order", ignore_case = TRUE)
       ),
       "TV Shows", "Movies"
     ),
@@ -757,63 +751,61 @@ cleaned_netflix_data <- NETFLIX_DATA |>
     segment = paste(availability_type, content_type)
   )
 
-# Step 2: Establish total platform catalog count and percentile thresholds
+# Step 2: Establishing platform-wide benchmarks and aggregate metrics for each segment
 clean_total_titles <- nrow(cleaned_netflix_data)
-
-p90_clean <- quantile(cleaned_netflix_data$hours_viewed, 0.90, na.rm = TRUE)
-p75_clean <- quantile(cleaned_netflix_data$hours_viewed, 0.75, na.rm = TRUE)
+total_platform_views <- sum(cleaned_netflix_data$hours_viewed, na.rm = TRUE)
 p25_clean <- quantile(cleaned_netflix_data$hours_viewed, 0.25, na.rm = TRUE)
 
-# Step 3: Summarise performance per segment with BOTH Total Titles and Catalog Share
-hit_rate_summary <- cleaned_netflix_data |>
+quadrant_summary <- cleaned_netflix_data |>
   group_by(segment) |>
   summarise(
-    total_titles     = n(),
-    catalog_share    = n() / clean_total_titles,
-    top_tier_pct     = mean(hours_viewed >= p90_clean, na.rm = TRUE),
-    strong_pct       = mean(hours_viewed >= p75_clean & hours_viewed < p90_clean, na.rm = TRUE),
-    moderate_pct     = mean(hours_viewed >= p25_clean & hours_viewed < p75_clean, na.rm = TRUE),
-    underperform_pct = mean(hours_viewed < p25_clean, na.rm = TRUE),
+    total_titles       = n(),
+    catalog_share      = n() / clean_total_titles,
+    viewership_share   = sum(hours_viewed, na.rm = TRUE) / total_platform_views,
+    underperform_pct   = mean(hours_viewed < p25_clean, na.rm = TRUE),
     .groups = "drop"
   ) |>
-  # Standardize row order
   mutate(
+    efficiency_index = viewership_share / catalog_share,
     segment = factor(
-      segment, 
+      segment,
       levels = c("Global TV Shows", "Regional TV Shows", "Global Movies", "Regional Movies")
     )
   ) |>
   arrange(segment)
 
-# Step 4: Render GT Table
-exec_hit_rate_matrix <- hit_rate_summary |>
+# Step 3: Rendering gt summary table
+quadrant_summary |>
+  select(segment, total_titles, catalog_share, viewership_share, efficiency_index, underperform_pct) |>
   gt() |>
   fmt_number(
-    columns = c(total_titles), 
-    use_seps = TRUE, 
+    columns = c(total_titles),
+    use_seps = TRUE,
     decimals = 0
   ) |>
   fmt_percent(
-    columns = c(catalog_share, top_tier_pct, strong_pct, moderate_pct, underperform_pct), 
+    columns = c(catalog_share, viewership_share, underperform_pct),
     decimals = 1
+  ) |>
+  fmt_number(
+    columns = c(efficiency_index),
+    decimals = 2
   ) |>
   cols_label(
     segment          = md("**Segment**"),
     total_titles     = md("**Total Titles**"),
     catalog_share    = md("**Catalog Share**"),
-    top_tier_pct     = md("**Top Hits (>=P90)**"),
-    strong_pct       = md("**Strong (P75–P90)**"),
-    moderate_pct     = md("**Moderate (P25–P75)**"),
+    viewership_share = md("**Viewership Share**"),
+    efficiency_index = md("**Efficiency Index**"),
     underperform_pct = md("**Underperforming (<P25)**")
   ) |>
   tab_header(
-    title    = md("**Table 7: Netflix Portfolio Performance (Pre-Taped Catalog)**"),
-    subtitle = md("*Share of Titles and Performance Distribution Across Strategic Quadrants*")
+    title = md("**Table I: Netflix Portfolio Performance Summary**"),
+    subtitle = md("*Catalog Share, Viewership Efficiency, and Underperformance Across Segments*")
   )
 
-# Display Table
-exec_hit_rate_matrix
 ```
+
 
 **2. Regional Movies present the greatest efficiency concern:**  
 Regional Movies account for *23.6%* of the catalog, yet *53.2%* of titles in this category are observed to be **under-performing**. Historical data also show that under-performance declined when the category’s title count dropped sharply from *9,599 to 460* in the second half of 2023 (2023H2), then increased as titles were added to the catalog again in the first half of 2024 (2024H1). This pattern suggests that expanding the regional movie catalog without selective acquisition criteria may increase the volume of low-engagement and under-performing content. The chart below represents the positive correlation between catalog size and under-performance.
@@ -904,7 +896,7 @@ ggplot(correlation_data_reg_movies, aes(x = total_titles, y = underperform_pct))
 ```
 
 **3. Format of content impacts its performance:**  
-Regional TV Shows account for *41.3%* of the catalog and perform in line with their catalog share, with an Efficiency Index of *1.00* and an under-performance rate of *14.8%*. In contrast, Regional Movies represent *23.6%* of the catalog but have a substantially higher under-performance rate of *53.2%*. This suggests that regional content is not inherently less effective. Instead, its performance significantly varies by format.
+Regional TV Shows account for *41.3%* of the catalog and perform in line with their catalog share, with an Efficiency Index of *1.00* and an under-performance rate of *14.8%* (Please see Table I above). In contrast, Regional Movies represent *23.6%* of the catalog but have a substantially higher under-performance rate of *53.2%*. This suggests that regional content is not inherently less effective. Instead, its performance significantly varies by format.
 
 ```{r}
 #| message: false
@@ -1065,7 +1057,7 @@ ggplot(global_movies_tiers, aes(x = tier, y = percentage, fill = tier)) +
 
 
 **5. TV Shows demonstrate stronger engagement efficiency, but opportunities for improvement remain:**  
-Global TV Shows have an efficiency index of *1.60*, while Regional TV Shows have an index of *1.00*. These results indicate that Global TV Shows generate engagement at a rate *60%* above their share of the catalog, while Regional TV Shows perform in line with their catalog share. However, more than half of titles in both categories fall within the **moderate viewership range (P25–P75)**, suggesting opportunities for more selective curation. The chart below represents a high rates of moderate performance by Global TV Shows and Regional TV Shows.
+Global TV Shows have an efficiency index of *1.60*, while Regional TV Shows have an index of *1.00* (Please see Table I above). These results indicate that Global TV Shows generate engagement at a rate *60%* above their share of the catalog, while Regional TV Shows perform in line with their catalog share. However, more than half of titles in both categories fall within the **moderate viewership range (P25–P75)**, suggesting opportunities for more selective curation. The chart below represents a high rates of moderate performance by Global TV Shows and Regional TV Shows.
 
 
 ```{r}
@@ -1222,7 +1214,7 @@ broadcast_summary |>
     viewership_share = md("**Viewership Share**")
   ) |>
   tab_header(
-    title    = md("**Table 8: Platform Composition: Pre-Taped vs. Live Events**"),
+    title    = md("**Table 7: Platform Composition: Pre-Taped vs. Live Events**"),
     subtitle = md("*Comparing Catalog and Viewership*")
   )
 ```
@@ -1310,7 +1302,7 @@ period_title_counts |>
     `Regional Movies` = md("**Regional Movies**")
   ) |>
   tab_header(
-    title = md("**Table 9: Title Count by Segment Across Reporting Periods**"),
+    title = md("**Table 8: Title Count by Segment Across Reporting Periods**"),
     subtitle = md("*Synchronized Catalog Volume Across Global vs. Regional Quadrants*")
   ) 
 ```
@@ -1478,7 +1470,7 @@ exec_portfolio_matrix <- portfolio_matrix_data |>
     efficiency_index = md("**Efficiency Index**")
   ) |>
   tab_header(
-    title    = md("**Table 10: Netflix Portfolio Matrix (Pre-Taped Catalog)**"),
+    title    = md("**Table 9: Netflix Portfolio Matrix (Pre-Taped Catalog)**"),
     subtitle = md("*TV Shows and Movies Categorized by Global and Regional Availability*")
   )
 
@@ -1577,7 +1569,7 @@ exec_hit_rate_matrix <- hit_rate_summary |>
     underperform_pct = md("**Underperforming (<P25)**")
   ) |>
   tab_header(
-    title    = md("**Table 7(used above in memo): Netflix Portfolio Performance (Pre-Taped Catalog)**"),
+    title    = md("**Table 10: Netflix Portfolio Performance (Pre-Taped Catalog)**"),
     subtitle = md("*Share of Titles and Performance Distribution Across Strategic Quadrants*")
   )
 
