@@ -22,86 +22,77 @@ In the words of Naaz Parvaz, Director of Transportation Sustainability Research,
 
 *And the winners are...*
 
-**The Lean, Mean, Green Machine Awards**
+## **The Green Machine Awards**
 
-The Lean, Mean, Green Machine Awards recognize the transit agencies producing the lowest estimated CO₂ per passenger mile in their respective ridership categories - Small, Medium and Large.
+The Green Machine Awards recognize the transit agencies producing the lowest estimated CO₂ per passenger mile in their respective ridership categories - Small, Medium and Large.
 
-*Category: Small*
+### *Category: Small*  
 **Winner: Adirondack Transit Lines, New York**
 
-0.146 lbs CO₂ per passenger mile | 89.7% below the category median
+Adirondack Transit Lines takes home the Small Agency Green Machine Award, recording just **0.146 lbs of CO₂ per passenger mile**, compared with a small-agency median of 1.419 pounds. That is **nearly 90% less** than its typical small-agency competitors.
 
-Adirondack Transit Lines takes home the Small Agency Green Machine Award, recording just 0.146 pounds of CO₂ per passenger mile, compared with a small-agency median of 1.419 pounds. That's nearly 90% less than its typical small-agency peer.
+*A true masterclass in keeping a low profile and even lower carbon emissions.*
 
-*Category: Medium*
-
+### *Category: Medium*  
 **Winner: City of Seattle, Washington**
 
-0.064 lbs CO₂ per passenger mile | 94.0% below the category median
+With emissions of just **0.064 lbs per passenger mile**, compared with a medium-agency median of 1.067 lbs which is **94% less** than other agencies in the category, Seattle takes the crown for the largest percentage improvement over its category benchmark among the Green Machine winners.
 
-With emissions of just 0.064 pounds per passenger mile, compared with a medium-agency median of 1.067 pounds, Seattle takes the crown for the largest percentage improvement over its category benchmark among the Green Machine winners.
+*Apparently, the secret ingredient in Seattle's coffee is carbon efficiency.*
 
-Apparently, the secret ingredient in Seattle's coffee is carbon efficiency.
-
-*Category: Large*
+### *Category: Large*  
 **Winner: TriMet, Oregon**
-
-0.097 lbs CO₂ per passenger mile | 87.3% below the category median
 
 With approximately 65.7 million annual passenger trips, TriMet proves that being a big transit agency doesn't automatically mean having a big carbon footprint per passenger mile.
 
-Its estimated emissions intensity of 0.097 pounds per passenger mile is approximately 87% below the large-agency median of 0.765 pounds.
+Its estimated emissions intensity of **0.097 pounds per passenger mile** is **approximately 87% below** the large-agency median of 0.765 lbs.
 
 *Big enough to move millions. Green enough to barely leave a mark.*
 
-![The Lean, Mean, Green Machine Awards: Winners vs. Category Medians](green_machine_awards.png){#fig-green-machine width="100%"}
+![The Green Machine Awards: Winners vs. Category Medians](green_machine_awards.png){#fig-green-machine width="100%"}
 
-**The Carbon Stomp Awards**
+## **The Carbon Stomp Awards**
 
 Now for the awards nobody asked to win.
 
-While the Green Machines were busy shrinking their footprints, these transit operations were stomping their way to leave a mark, quite literally!
+While the Green Machines were busy shrinking their footprints, these transit operations were (carbon) stomping their way to leave a mark, quite literally!
 
 The Carbon Stomp Awards recognize the three agency-mode combinations with the highest total estimated CO₂ emissions, calculated by adding the estimated emissions reported for each agency's individual transit mode. Unlike the Green Machine Awards, these rankings measure total emissions, not emissions efficiency.
 
-**1st place: MTA New York City Transit - Heavy Rail**
-
-900.4 Million lbs of CO₂
+### *1st Place*
+**MTA New York City Transit - Heavy Rail**
 
 New York City, really knows how to make an entrance.
 
-The subway takes first place with approximately 900.4 million pounds of estimated CO₂.
-That is roughly 1.35 times the emissions of the second-place winner, MTA's bus operations, at 668.2 million pounds.
+The subway takes first place with approximately **900.4 million lbs** of estimated CO₂.
+That is roughly **1.35 times** the emissions of the second-place winner, MTA's bus operations, at 668.2 million pounds.
 
 *Between the rats, the delays, and the occasional mystery puddle, New Yorkers already have enough to deal with. Now their subway has an award-winning carbon footprint, too.*
 
 
-**2nd Place: MTA New York City Transit - Bus**
+### *2nd Place*
+**MTA New York City Transit - Bus**
 
-668.2 Million lbs of CO₂
+Not satisfied with first place, New York City Transit decided to take second place, too. 
 
-Wait, the MTA again?  
-That's right. Not satisfied with first place, New York City Transit decided to take second place, too, like the overachiever it is. 
+Its bus operations generated approximately **668.2 million lbs** of estimated CO₂, about **6% more** than the third-place winner, at 630.5 Million lbs.
 
-Its bus operations generated approximately 668.2 million pounds of estimated CO₂, about 6% more than the third-place winner, at 630.5 million pounds.
-
-Together, the MTA's heavy rail and bus operations generated approximately 1.57 BILLION pounds of CO₂.
+Together, the MTA's heavy rail and bus operations generated approximately **1.57 Billion lbs** of CO₂.
 
 *The city that never sleeps. Apparently, neither do its emissions.*
 
-**3rd Place: Northeast Illinois Regional Commuter Railroad Corporation - Commuter Rail**
+### *3rd Place*
+**Northeast Illinois Regional Commuter Railroad Corporation - Commuter Rail**
 
-630.5 Million lbs of CO₂
-
-Coming in third is the Chicago region's commuter rail operator, with approximately 630.5 million pounds of estimated CO₂.
+Coming in third is the Chicago region's commuter rail operator, with approximately **630.5 million lbs** of estimated CO₂.
 
 That's about 70% of the first-place winner's emissions. Not quite enough to take the crown, but certainly enough to earn a bronze.
 
 *Chicago is known for deep-dish pizza, strong winds, and now a commuter rail carbon footprint!*
 
-![Transit Agencies with the Biggest Carbon Footprints](carbon_stomp_lollipop.png)
+![Transit Agencies with the Biggest Carbon Footprints](carbon_stomp_lollipop.png){#fig-green-machine width="100%"}
 
-**Understanding the Results: Bigger Footprint Doesn't Always Mean Worse Transit**
+## Understanding the Results: Bigger Footprint Doesn't Always Mean Worse Transit
 
 Before anyone starts sending angry emails to the MTA, there's one important detail.
 
@@ -111,51 +102,52 @@ Big transit systems transport millions of passengers, so they can produce more e
 
 In other words, winning a Carbon Stomp Award doesn't automatically make an agency environmentally worse than its competitors.
 
-We're celebrating the numbers, not canceling the subway. Please, New Yorkers have places to be and they can’t afford the MTA to get delayed because they were busy responding to your angry emails. 
+We are celebrating the numbers, not canceling the subway. Please, New Yorkers have places to be and they can’t afford the MTA to get delayed because they were busy responding to your angry emails. 
 
-**And That's a Wrap!**
+## And That's a Wrap!
 
 From Adirondack's lightweight footprint to the MTA's double appearance on the carbon podium, this year's awards prove one thing: When it comes to transit sustainability, it's not just about how far you go, but how efficiently you get there.
 
 *Here's to greener journeys, cleaner energy, and hopefully fewer carbon stomps next year. Until then, tread lightly and mind your emissions!*
 
-**Research Methodology**
+## Research Methodology
 
 **Sources:** National Transit Database (NTD) energy consumption and service data; U.S. Energy Information Administration (EIA) emissions factors.
 
-The research combined three publicly available datasets:
-**NTD Energy Data:** Reported fuel and electricity consumption by transit agency and mode.
-**NTD Service Data:** Passenger trips, passenger miles, agency information, and transit service characteristics.
-**EIA Data:** State-level electricity emissions factors, supplemented by EIA fuel emissions conversion factors.
+The research combined three publicly available datasets:  
+**NTD Energy Data:** Reported fuel and electricity consumption by transit agency and mode.  
+**NTD Service Data:** Passenger trips, passenger miles, agency information, and transit service characteristics.  
+**EIA Data:** State-level electricity emissions factors, supplemented by EIA fuel emissions conversion factors.  
 
 Reported fuel and electricity consumption were converted into estimated pounds of CO₂ using applicable emissions factors.
 
-**Result Calculation:**
-**Green Machine Awards:**  For the Green Machine Awards, emissions were aggregated at the agency level and divided by total passenger miles. Agencies were grouped by annual unlinked passenger trips into Small (100,000–999,999), Medium (1 million–9,999,999), and Large (10 million or more) categories. The lowest-emitting agency per passenger mile in each category was selected and compared with its category median.
+**Calculation Summary:**  
+- **Green Machine Awards:**  For the Green Machine Awards, emissions were aggregated at the agency level and divided by total passenger miles. Agencies were grouped by annual unlinked passenger trips into Small (100,000–999,999), Medium (1 million–9,999,999), and Large (10 million or more) categories. The lowest-emitting agency per passenger mile in each category was selected and compared with its category median.
 
-**Carbon Stomp Awards:** For the Carbon Stomp Awards, total estimated emissions were aggregated by agency and transit mode. The three highest totals were selected, regardless of agency size. Comparisons with other podium winners provide context; these are not comparisons with the median transit operation. 
+- **Carbon Stomp Awards:** For the Carbon Stomp Awards, total estimated emissions were aggregated by agency and transit mode. The three highest totals were selected, regardless of agency size. Comparisons with other podium winners provide context; these are not comparisons with the median transit operation. 
 
 **Coverage and limitations:** The analysis covers the 50 U.S. states. Results depend on the completeness and accuracy of reported energy data and do not measure life-cycle emissions. Total emissions should not be interpreted as a direct measure of transit efficiency.
 
-**About Transit Sustainability Research Institute (TSRI)**
+## About Transit Sustainability Research Institute (TSRI)
 
 The Transit Sustainability Research Institute (TSRI) is an independent research organization dedicated to making public transportation cleaner, smarter, and more sustainable. Through data-driven research and environmental performance analysis, TSRI evaluates transit systems across the United States, highlighting both sustainability champions and opportunities for improvement.
 
-**Media Contact**
+## Media Contact
 
-Kaitlyn Marer. 
+**Kaitlyn Marer**  
 *Public Relations & Communications Manager*  
 Transit Sustainability Research Institute (TSRI)  
 press@tsri.example.com  
-https://tsri.example.com
-
-
-
+[https://www.tsri.example.com](https://www.tsri.example.com)
 
 
 # Appendix
 
 ## Task 1: Data Acquisition
+
+For this analysis, data was obtained from 3 publicly available sources: the [National Transit Database (NTD) Energy Data](https://www.transit.dot.gov/ntd/data-product/2025-annual-database-energy-consumption), [NTD Service Data](https://www.transit.dot.gov/ntd/data-product/2025-service), and the [U.S. Energy Information Administration (EIA) State Energy Data System (SEDS)](https://www.eia.gov/state/seds/seds-data-fuel.php?sid=NM). 
+
+The NTD Energy Data provided information on fuel and electricity consumption across transit agencies, while the NTD Service Data provided ridership and passenger-mile statistics. The EIA data supplied state-level electricity-related CO₂ emission factors, which were used alongside fuel emission factors to estimate total emissions. These datasets were combined to analyze the carbon footprints and emissions efficiency of public transit agencies across all 50 U.S. states.
 
 ### Task 1a: Data Acquisition - State Electricity Profiles
 
@@ -357,7 +349,7 @@ NTD_SERVICE <- load_ntd_service()
 ```
 
 
-![Relationship Diagram](/Users/naazparvaz/STA9750-2026-FALL/data/mp02/db_diagram.png)
+![Relationship Diagram](data/mp02/db_diagram.png)
 
 
 ## Task 2: Recoding the Mode column
@@ -1795,7 +1787,7 @@ agency_emissions <- agency_emissions |>
 ```
 
 
-finding Greenest Transit Agency using lowest co2 
+Finding the Greenest Transit Agency using lowest co2 
 
 ```{r}
 green_machine_winners <- agency_emissions |>
@@ -1914,7 +1906,7 @@ green_chart_data <- green_machine_awards |>
 
 
 ```{r}
-# Create labels for each agency size category
+# Creating labels for each agency size category
 agency_labels <- green_machine_awards |>
   mutate(
     agency_size = as.character(agency_size),
@@ -1927,7 +1919,7 @@ agency_labels <- green_machine_awards |>
   tibble::deframe()
 
 
-# Create the chart
+# Creating the chart
 ggplot(
   green_chart_data,
   aes(
@@ -2206,390 +2198,10 @@ ggsave(
 )
 ```
 
+::: {.callout-note title="AI Usage Statement" collapse="true"}
 
+ChatGPT and Gemini were used to help write and correct the code/syntax in this project. Additionally, ChatGPT and Gemini were used to brainstorm ideas on different ways to analyze open-ended questions. All non-code text was generated without the use of any Generative AI tools. 
 
+:::
 
 
-
-
-
-Checking for column names
-```{r}
-names(EIA_SEP_REPORT)
-names(NTD_ENERGY)
-names(NTD_SERVICE)
-```
-
-
-```{r}
-
-library(tidyverse)
-
-# 1. Inspect the data types and examples
-glimpse(EIA_SEP_REPORT)
-glimpse(NTD_ENERGY)
-glimpse(NTD_SERVICE)
-```
-
-2. Checking missing values in each dataset
-```{r}
-colSums(is.na(EIA_SEP_REPORT))
-colSums(is.na(NTD_ENERGY))
-colSums(is.na(NTD_SERVICE))
-```
-
-3. Reviewing numeric summaries
-```{r}
-summary(EIA_SEP_REPORT)
-summary(NTD_ENERGY)
-summary(NTD_SERVICE)
-
-```
-
-4. Checking the number of distinct agencies and modes
-```{r}
-NTD_ENERGY |>
-  summarise(
-    rows = n(),
-    agencies = n_distinct(`NTD ID`),
-    modes = n_distinct(Mode)
-  )
-```
-
-
-
-```{r}
-
-NTD_SERVICE |>
-  summarise(
-    rows = n(),
-    agencies = n_distinct(NTD_ID),
-    states = n_distinct(state),
-    modes = n_distinct(mode)
-  )
-
-```
-
-
-
-
-# Appendix
-INVESTIGATION
-
-
-```{r}
-
-NTD_SERVICE |>
-  dplyr::filter(NTD_ID == "00008", Mode == "Demand Response") |>
-  dplyr::select(
-    NTD_ID, AGENCY, mode, Mode, type_of_service,
-    total_upt, sum_passenger_miles
-  )
-```
-
-Creating a service summary by agency and mode
-```{r}
-service_mode_summary <- NTD_SERVICE |>
-  dplyr::group_by(NTD_ID, Mode) |>
-  dplyr::summarise(
-    total_upt = sum(total_upt),
-    sum_passenger_miles = if (all(is.na(sum_passenger_miles))) {
-      NA_real_
-    } else {
-      sum(sum_passenger_miles, na.rm = TRUE)
-    },
-    .groups = "drop"
-  )
-
-```
-
-checking if summary worked Verifying the summary has unique keys:
-
-```{r}
-service_mode_summary |>
-  dplyr::count(NTD_ID, Mode) |>
-  dplyr::filter(n > 1)
-```
-
-```{r}
-service_mode_summary |>
-  dplyr::filter(NTD_ID == "00008", Mode == "Demand Response")
-```
-fixing agency ID TYPE by converting to integer
-```{r}
-NTD_ENERGY <- NTD_ENERGY |>
-  dplyr::mutate(
-    `NTD ID` = sprintf("%05d", as.integer(`NTD ID`))
-  )
-```
-
-Join energy data to service data
-```{r}
-energy_service <- dplyr::left_join(
-  NTD_ENERGY,
-  service_mode_summary,
-  by = dplyr::join_by(
-    `NTD ID` == NTD_ID,
-    Mode == Mode
-  ),
-  relationship = "one-to-one"
-)
-```
-
-
-```{r}
-
-nrow(NTD_ENERGY)
-nrow(energy_service)
-```
-
-Check how many energy records matched service data
-
-```{r}
-sum(!is.na(energy_service$total_upt))
-```
-
-
-```{r}
-sum(is.na(energy_service$total_upt))
-```
-
-Next step: Connect the state electricity data
-```{r}
-agency_state <- NTD_SERVICE |>
-  dplyr::distinct(NTD_ID, state)
-```
-
-checking whether any agency ID is associated with multiple states:
-```{r}
-agency_state |>
-  dplyr::count(NTD_ID) |>
-  dplyr::filter(n > 1)
-```
-
-
-Adding state to our energy and service dataset
-```{r}
-energy_service_state <- dplyr::left_join(
-  energy_service,
-  agency_state,
-  by = dplyr::join_by(`NTD ID` == NTD_ID),
-  relationship = "many-to-one"
-)
-```
-
-Checking the result:
-```{r}
-nrow(energy_service_state)
-```
-
-checking how many records don't have a matching state:
-```{r}
-sum(is.na(energy_service_state$state))
-```
-
-
-Connecting to EIA_SEP_REPORT
-
-```{r}
-transit_combined <- dplyr::left_join(
-  energy_service_state,
-  EIA_SEP_REPORT,
-  by = dplyr::join_by(state == abbreviation),
-  relationship = "many-to-one"
-)
-```
-
-
-Verifying the final join
-
-```{r}
-nrow(transit_combined)
-```
-
-
-```{r}
-sum(is.na(transit_combined$CO2_MWh))
-```
-
-
-```{r}
-transit_combined |>
-  dplyr::filter(is.na(CO2_MWh)) |>
-  dplyr::select(`NTD ID`, `Agency Name`, state)
-```
-```{r}
-transit_combined |>
-  dplyr::filter(is.na(CO2_MWh)) |>
-  dplyr::select(`NTD ID`, `Agency Name`, state, state.y) |>
-  dplyr::distinct()
-```
-
-```{r}
-transit_combined <- transit_combined |>
-  dplyr::select(-state.y)
-```
-
-```{r}
-names(transit_combined)
-```
-
-Calculate electricity-related emissions
-```{r}
-sum(is.na(transit_combined$`Kilowatt hours of Electric Propulsion`))
-
-sum(is.na(transit_combined$`Kilowatt hours of Electric Battery`))
-```
-
-Calculate electricity emissions
-```{r}
-transit_combined <- transit_combined |>
-  dplyr::mutate(
-    electricity_emissions_lb = (
-      `Kilowatt hours of Electric Propulsion` +
-      `Kilowatt hours of Electric Battery`
-    ) / 1000 * CO2_MWh
-  )
-```
-
-
-```{r}
-summary(transit_combined$electricity_emissions_lb)
-
-sum(is.na(transit_combined$electricity_emissions_lb))
-```
-
-Finding the agency with the highest electricity emissions
-```{r}
-transit_combined |>
-  dplyr::filter(!is.na(electricity_emissions_lb)) |>
-  dplyr::arrange(dplyr::desc(electricity_emissions_lb)) |>
-  dplyr::select(
-    `Agency Name`,
-    state,
-    Mode,
-    `Kilowatt hours of Electric Propulsion`,
-    `Kilowatt hours of Electric Battery`,
-    CO2_MWh,
-    electricity_emissions_lb
-  ) |>
-  head(5)
-```
-
-Calculating how much CO₂ is emitted per gallon of each fuel:
-```{r}
-fuel_factors <- tibble::tibble(
-  fuel = c(
-    "Diesel",
-    "Gasoline",
-    "Biodiesel",
-    "Ethanol",
-    "Kerosene",
-    "LNG",
-    "LPG",
-    "Bunker fuel"
-  ),
-  factor_lb_per_gallon = c(
-    22.51,
-    19.36,
-    20.83,
-    12.68,
-    21.50,
-    9.83,
-    12.52,
-    24.85
-  )
-)
-
-fuel_factors
-
-```
-
-
-Calculating emision from each fuel:
-```{r}
-transit_combined <- transit_combined |>
-  dplyr::mutate(
-    diesel_emissions_lb      = `Gallons of Diesel Fuel` * 22.46,
-    gasoline_emissions_lb    = `Gallons of Gasoline` * 19.64,
-    biodiesel_emissions_lb   = `Gallons of Bio-Diesel` * 22.46,
-    ethanol_emissions_lb     = `Gallons of Ethanol` * 15.3,
-    kerosene_emissions_lb    = `Gallons of Kerosene` * 21.5,
-    lng_emissions_lb         = `Gallons of Liquified Nat Gas` * 11.7,
-    lpg_emissions_lb         = `Gallons of Liquified Petroleum Gas` * 12.7,
-    bunker_fuel_emissions_lb = `Gallons of Bunker Fuel` * 31.5
-  ) |>
-  dplyr::mutate(
-    total_fuel_emissions_lb =
-      diesel_emissions_lb +
-      gasoline_emissions_lb +
-      biodiesel_emissions_lb +
-      ethanol_emissions_lb +
-      kerosene_emissions_lb +
-      lng_emissions_lb +
-      lpg_emissions_lb +
-      bunker_fuel_emissions_lb
-  )
-```
-
-
-```{r}
-summary(transit_combined$total_fuel_emissions_lb)
-```
-The maximum is  603,936,344 lb CO₂, matching the maximum diesel emissions, suggesting that diesel is the largest contributor of CO₂ emissions.
-
-```{r}
-transit_combined <- transit_combined |>
-  dplyr::mutate(
-    total_emissions_lb =
-      electricity_emissions_lb +
-      total_fuel_emissions_lb
-  )
-```
-
-
-```{r}
-summary(transit_combined$total_emissions_lb)
-
-sum(is.na(transit_combined$total_emissions_lb))
-```
-
-
-
-```{r}
-transit_combined |>
-  dplyr::select(
-    `Agency Name`,
-    state,
-    Mode,
-    electricity_emissions_lb,
-    total_fuel_emissions_lb,
-    total_emissions_lb
-  ) |>
-  dplyr::slice_head(n = 10) |>
-  gt::gt() |>
-  gt::tab_header(
-    title = "Transit Agency Emissions",
-    subtitle = "Estimated emissions from electricity and fuel use"
-  ) |>
-  gt::cols_label(
-    `Agency Name` = "Transit Agency",
-    state = "State",
-    Mode = "Transit Mode",
-    electricity_emissions_lb = "Electricity (lb CO₂)",
-    total_fuel_emissions_lb = "Fuel (lb CO₂)",
-    total_emissions_lb = "Total (lb CO₂)"
-  ) |>
-  gt::fmt_number(
-    columns = c(
-      electricity_emissions_lb,
-      total_fuel_emissions_lb,
-      total_emissions_lb
-    ),
-    decimals = 0,
-    use_seps = TRUE
-  ) |>
-  gt::tab_source_note(
-    source_note = "Emissions are estimates based on reported energy consumption and the emissions factors used in this analysis."
-  )
-```
