@@ -115,13 +115,15 @@ From Adirondack's lightweight footprint to the MTA's double appearance on the ca
 **Sources:** National Transit Database (NTD) energy consumption and service data; U.S. Energy Information Administration (EIA) emissions factors.
 
 The research combined three publicly available datasets:  
-**NTD Energy Data:** Reported fuel and electricity consumption by transit agency and mode.  
-**NTD Service Data:** Passenger trips, passenger miles, agency information, and transit service characteristics.  
-**EIA Data:** State-level electricity emissions factors, supplemented by EIA fuel emissions conversion factors.  
+
+1. **NTD Energy Data:** Reported fuel and electricity consumption by transit agency and mode.  
+2. **NTD Service Data:** Passenger trips, passenger miles, agency information, and transit service characteristics.  
+3. **EIA Data:** State-level electricity emissions factors, supplemented by EIA fuel emissions conversion factors.  
 
 Reported fuel and electricity consumption were converted into estimated pounds of CO₂ using applicable emissions factors.
 
 **Calculation Summary:**  
+
 - **Green Machine Awards:**  For the Green Machine Awards, emissions were aggregated at the agency level and divided by total passenger miles. Agencies were grouped by annual unlinked passenger trips into Small (100,000–999,999), Medium (1 million–9,999,999), and Large (10 million or more) categories. The lowest-emitting agency per passenger mile in each category was selected and compared with its category median.
 
 - **Carbon Stomp Awards:** For the Carbon Stomp Awards, total estimated emissions were aggregated by agency and transit mode. The three highest totals were selected, regardless of agency size. Comparisons with other podium winners provide context; these are not comparisons with the median transit operation. 
@@ -1787,7 +1789,7 @@ agency_emissions <- agency_emissions |>
 ```
 
 
-Finding the Greenest Transit Agency using lowest co2 
+Finding the Greenest Transit Agency using lowest CO2 :
 
 ```{r}
 green_machine_winners <- agency_emissions |>
@@ -1875,7 +1877,7 @@ green_chart_data <- green_machine_awards |>
 green_chart_data
 ```
 
-visual:
+Visualizing the Greenest Transit Agency using findings based on lowest CO2 :
 
 ```{r}
 green_chart_data <- green_machine_awards |>
@@ -2001,7 +2003,7 @@ ggsave(
 ```
 
 
-Carbon stomp:
+Identifying the Carbon Stomp Winner Awrads based on CO2 emissions per passenger mile:
 
 ```{r}
 #| include: false
@@ -2051,19 +2053,19 @@ carbon_stomp_final <- carbon_stomp_winners |>
 ```
 
 
-visual:
+Visualizing the top 3 agency-mode pairs by total CO2 emissions:
 
 ```{r}
 library(tidyverse)
 
 library(tidyverse)
 
-# Identify the top 3 agency-mode pairs by total CO2 emissions
+# Identifying the top 3 agency-mode pairs by total CO2 emissions
 carbon_stomp_winners <- carbon_stomp |>
   arrange(desc(total_co2)) |>
   slice_head(n = 3)
 
-# Prepare the chart data
+# Preparing the chart data
 carbon_stomp_plot <- carbon_stomp_winners |>
   mutate(
     co2_million_lbs = total_co2 / 1000000,
